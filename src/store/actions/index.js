@@ -1,0 +1,1 @@
+export { loadAppointment , addAppointment} from './appointment'

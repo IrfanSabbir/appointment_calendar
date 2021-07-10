@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from 'react'
+import {Route } from 'react-router-dom'
+import { useHistory } from 'react-router'
+import Appointment from "./pages/Appointment";
 function App() {
+
+  const history = useHistory()
+
+    useEffect(()=>{
+      if(history.location.pathname === "/"){
+        const year_no = new Date().getFullYear();
+        const month_no = new Date().getMonth();
+        history.push(`year/${year_no}/month/${month_no+1}`)
+      }
+    },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Route path="/year/:year_no/month/:month_no" component={Appointment}/>
     </div>
   );
 }
 
-export default App;
+
+export default App
